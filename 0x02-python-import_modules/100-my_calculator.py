@@ -13,11 +13,11 @@ if __name__ == "__main__":
     else:
         a = int(sys.argv[1])
         b = int(sys.argv[3])
-        if sys.argv[2] == "+":
+        if sys.argv[2] is "+":
             print("{:d} + {:d} = {:d}".format(a, b, add(a, b)))
-        elif sys.argv[2] == "-":
+        elif sys.argv[2] is "-":
             print("{:d} - {:d} = {:d}".format(a, b, sub(a, b)))
-        elif sys.argv[2] == "*":
+        elif sys.argv[2] is "*":
             print("{:d} * {:d} = {:d}".format(a, b, mul(a, b)))
-        elif sys.argv[2] == "/":
+        elif sys.argv[2] is "/":
             print("{:d} / {:d} = {:d}".format(a, b, div(a, b)))
