@@ -4,7 +4,7 @@ if __name__ == "__main__":
     from calculator_1 import add, sub, mul, div
     argv = sys.argv[1:]
     ops = ["+", "-", "*", "/"]
-    if len(argv) != 3:
+    if len(argv) is not 3:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         exit(1)
     elif sys.argv[2] not in ops:
