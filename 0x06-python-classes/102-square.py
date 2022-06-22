@@ -1,53 +1,69 @@
 #!/usr/bin/python3
+"""
+Square class definition
+"""
+
+
 class Square:
-    """Represents a square.
-    Private instance attribute: size:
-        - property def size(self)
-        - property setter def size(self, value)
-    Instantiation with optional size.
-    Public instance method: def area(self).
+    """
+    Square class with private instance attribute size
     """
 
     def __init__(self, size=0):
-        """Initializes the data."""
-        self.__size = size
-
-    def __eq__(self, other):
-        """Equal."""
-        if hasattr(other, 'size'):
-            return self.__size == other.__size
-        return self.__size == other
-
-    def __ne__(self, other):
-        """Not equal."""
-        return not self.__eq__(other)
-
-    def __lt__(self, other):
-        """Less than."""
-        if hasattr(other, 'size'):
-            return self.__size < other.__size
-        return self.__size < other
-
-    def __le__(self, other):
-        """Less than or equal."""
-        if hasattr(other, 'size'):
-            return self.__size <= other.__size
-        return self.__size <= other
+        """
+        Args:
+            size: size of the square
+        """
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        elif size < 0:
+            raise ValueError("size must be >= 0")
+        else:
+            self.__size = size
 
     @property
     def size(self):
-        """Retrieves the size."""
-        return self.__size
+        """size: size of the square
+        setter validating size is int and >= 0
+        Raise:
+             TypeError and ValueError
+        """
+        return (self.__size)
 
     @size.setter
     def size(self, value):
-        """Sets the size to a value."""
-        if not isinstance(value, int) or not isinstance(value, float):
-            raise TypeError("size must be a number")
+        """size: size of the square
+        setter validating size is int and >= 0
+        Raise:
+             TypeError and ValueError
+        """
+        if type(value) is not int:
+            raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
+        else:
+            self.__size = value
 
     def area(self):
-        """Returns the current square area."""
-        return self.__size ** 2
+        """
+        Returns area of the square instance
+        """
+        return (self.size ** 2)
+
+    def __lt__(self, other):
+        return (self.area() < other.area())
+
+    def __le__(self, other):
+        return (self.area() <= other.area())
+
+    def __eq__(self, other):
+        return (self.area() == other.area())
+
+    def __ne__(self, other):
+        return (self.area() != other.area())
+
+    def __gt__(self, other):
+        return (self.area() > other.area())
+
+    def __ge__(self, other):
+        return (self.area() >= other.area())
