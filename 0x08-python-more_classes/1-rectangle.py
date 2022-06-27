@@ -14,7 +14,6 @@ class Rectangle:
         TypeError: if width or height is not an integer
         ValueError: if width or height is less than zero
     """
-
     def __init__(self, width, height):
         """
         init method to construct a rectangle
