@@ -10,10 +10,14 @@ class Rectangle:
     Args:
         width(int): width of the rectangle
         height(int): height of the rectangle
+        number_of_instances(int): public class attribute
+        print_symbol(str): public class attribute
     Raises:
         TypeError: when width/height not int type
         ValueError: when width/height less than 0
     """
+    number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """
@@ -21,6 +25,7 @@ class Rectangle:
         """
         self.height = height
         self.width = width
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -85,8 +90,9 @@ class Rectangle:
             rectangle = []
             for i in range(0, self.__height):
                 for j in range(0, self.__width):
-                    rectangle.append("#")
+                    rectangle.append(str(self.print_symbol))
                 rectangle.append("\n")
+            del rectangle[-1]
             return (''.join(rectangle))
 
     def __repr__(self):
@@ -99,4 +105,31 @@ class Rectangle:
         """
         deletes an instance of Rectangle
         """
+        Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """
+        returns the biggest rectangle based on the area
+        Args:
+            rect_1(int): rectangle 1
+            rect_2(int): rectangle 2
+        Raises:
+            TypeError: when rect_1/rect_2 are not istance of Rectangle
+        Returns:
+            the biggest rectangle based on the area
+            rect_1 if equals
+        """
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        area1 = rect_1.area()
+        area2 = rect_2.area()
+        if area1 == area2:
+            return (rect_1)
+        elif area1 > area2:
+            return (rect_1)
+        else:
+            return (rect_2)
