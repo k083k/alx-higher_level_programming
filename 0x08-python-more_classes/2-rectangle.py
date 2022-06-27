@@ -6,20 +6,20 @@ Rectangle module
 
 class Rectangle:
     """
-    defining a Rectangle class
+    class that defines Rectangle
     Args:
-        width: width of the rectangle
-        height: height of the rectangle
+        width(int): width of the rectangle
+        height(int): height of the rectangle
     Raises:
-        TypeError: if width/height is not an integer
-        ValueError: if width/height is < 0
+        TypeError: when width/height not int type
+        ValueError: when width/height less than 0
     """
     def __init__(self, width=0, height=0):
         """
-        init metho to construct rectangle
+        Init method to construct a rectangle
         """
-        self.__height = height
-        self.__width = width
+        self.height = height
+        self.width = width
 
     @property
     def width(self):
@@ -31,7 +31,7 @@ class Rectangle:
     @width.setter
     def width(self, value):
         """
-        width setter attribute
+        width setter
         """
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
@@ -43,7 +43,7 @@ class Rectangle:
     @property
     def height(self):
         """
-        height getter
+        height getter attribute
         """
         return (self.__height)
 
@@ -59,18 +59,17 @@ class Rectangle:
         else:
             self.__height = value
 
-
     def area(self):
         """
-        area finder
+        returns the rectangle area
         """
         return (self.__height * self.__width)
 
     def perimeter(self):
         """
-        perimeter finder
+        returns the rectangle perimeter
         """
         if self.__width == 0 or self.__height == 0:
             return (0)
         else:
-            return ((self.__height * 2) + (self.__width * 2))
+            return (2 * (self.__width + self.__height))
