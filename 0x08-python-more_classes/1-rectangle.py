@@ -3,6 +3,7 @@
 Rectangle module
 """
 
+
 class Rectangle:
     """
     class that defines a Rectangle
@@ -35,7 +36,7 @@ class Rectangle:
         """
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("width must be >= 0")
         else:
             self.__width = value
@@ -43,14 +44,14 @@ class Rectangle:
     @property
     def height(self):
         """
-        height getter
+        height getter attribute
         """
         return (self.__height)
 
     @height.setter
     def height(self, value):
         """
-        height setter
+        height setter attribute
         """
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
