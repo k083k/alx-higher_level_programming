@@ -15,6 +15,7 @@ class Rectangle:
         ValueError: when width/height less than 0
     """
     number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """
@@ -87,8 +88,9 @@ class Rectangle:
             rectangle = []
             for i in range(0, self.__height):
                 for j in range(0, self.__width):
-                    rectangle.append("#")
+                    rectangle.append(str(self.print_symbol))
                 rectangle.append("\n")
+            del rectangle[-1]
             return (''.join(rectangle))
 
     def __repr__(self):
