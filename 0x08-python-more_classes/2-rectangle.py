@@ -15,6 +15,9 @@ class Rectangle:
         ValueError: if width/height is < 0
     """
     def __init__(self, width=0, height=0):
+        """
+        init metho to construct rectangle
+        """
         self.__height = height
         self.__width = width
 
