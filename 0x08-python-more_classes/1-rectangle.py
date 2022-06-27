@@ -6,21 +6,21 @@ Rectangle module
 
 class Rectangle:
     """
-    class that defines a Rectangle
+    class that defines Rectangle
     Args:
         width(int): width of the rectangle
         height(int): height of the rectangle
     Raises:
-        TypeError: if width or height is not an integer
-        ValueError: if width or height is less than zero
+        TypeError: when width/height not int type
+        ValueError: when width/height less than 0
     """
-    def __init__(self, width, height):
+    def __init__(self, width=0, height=0):
         """
-        init method to construct a rectangle
+        Init method to construct a rectangle
         """
         self.height = height
         self.width = width
-    
+
     @property
     def width(self):
         """
@@ -58,5 +58,3 @@ class Rectangle:
             raise ValueError("height must be >= 0")
         else:
             self.__height = value
-
-
