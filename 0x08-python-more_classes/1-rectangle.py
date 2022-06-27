@@ -18,8 +18,8 @@ class Rectangle:
         """
         init method to construct a rectangle
         """
-        self.width = width
         self.height = height
+        self.width = width
     
     @property
     def width(self):
