@@ -31,11 +31,6 @@ Test5: testing with a float arg so it returns an integer after
     >>> add_integer(100.3, 3)
     103
 
-Test6: b not type int 
-    >>> add_integer(4, "school")
-    Traceback (most recent call last):
-    TypeError: b must be an integer
-
 Test7: a not type int
     >>> add_integer("school", 4)
     Traceback (most recent call last):
