@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module 8-rectangle.
+"""Module 9-rectangle.
 Creates a Rectangle class.
 """
 
@@ -12,6 +12,7 @@ class Rectangle(BaseGeometry):
     Private instance attributes:
         - width
         - height
+    Public method area().
     Inherits from BaseGeometry.
     """
 
@@ -27,3 +28,15 @@ class Rectangle(BaseGeometry):
         self.integer_validator("height", height)
         self.__width = width
         self.__height = height
+
+    def __str__(self):
+        """Returns a formatted string."""
+
+        return str("[Rectangle] {}/{}".format(self.__width, self.__height))
+
+    def area(self):
+        """Computes the area of the Rectangle instance.
+        Overwrites the area() method from BaseGeometry.
+        """
+
+        return self.__width * self.__height
