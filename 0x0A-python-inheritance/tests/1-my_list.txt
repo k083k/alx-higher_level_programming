@@ -48,3 +48,15 @@ Test3:
 
     >>> pan_list.print_sorted()
     ['e', 'h', 'l', 'l', 'o']
+
+Test4:
+
+    >>> new_list = []
+    >>> print(new_list)
+    []
+
+Test5:
+
+    >>> my_list = [-3, -5, 1, 0, 7]
+    >>> print(my_list)
+    [-3, -5, 1, 0, 7]
