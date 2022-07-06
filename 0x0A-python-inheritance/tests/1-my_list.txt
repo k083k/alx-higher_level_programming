@@ -34,3 +34,17 @@ Test2:
 
     >>> print(new_list)
     [-3, -5, 1, 0, 7]
+
+Test3:
+
+    >>> pan_list = MyList()
+    >>> pan_list.append('h')
+    >>> pan_list.append('e')
+    >>> pan_list.append('l')
+    >>> pan_list.append('l')
+    >>> pan_list.append('o')
+    >>> print(pan_list)
+    ['h', 'e', 'l', 'l', 'o']
+
+    >>> pan_list.print_sorted()
+    ['e', 'h', 'l', 'l', 'o']
