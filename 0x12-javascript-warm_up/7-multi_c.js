@@ -1,8 +1,12 @@
 #!/usr/bin/node
-if (!process.argv[2]){
-	console.log('Missing number of occurences');
-} else if (process.argv[2] >= 1) {
-	for (i = 0; i < process.argv[2]; i++){
-		console.log('C is fun');
-	}
+const { argv } = require('process');
+
+const numberLoop = Number(argv[2]);
+
+if (isNaN(numberLoop)) {
+  console.log('Missing number of occurrences');
+} else {
+  for (let i = 0; i < numberLoop; i++) {
+    console.log('C is fun');
+  }
 }
