@@ -1,8 +1,14 @@
 #!/usr/bin/node
+const argv = process.argv.slice(2);
 const fs = require('fs');
-const fA = process.argv[2];
-const fB = process.argv[3];
-const fC = process.argv[4];
-const readA = fs.readFileSync(fA, 'UTF8');
-const readB = fs.readFileSync(fB, 'UTF8');
-fs.appendFileSync(fC, readA + readB);
+fs.readFile(argv[0], 'utf8', function (err, data) {
+  if (err) throw (err);
+  const contents = data;
+  fs.readFile(argv[1], 'utf8', function (err, data) {
+    if (err) throw (err);
+    const contents2 = data;
+    fs.appendFile(argv[2], contents + contents2, function (err) {
+      if (err) throw (err);
+    });
+  });
+});
