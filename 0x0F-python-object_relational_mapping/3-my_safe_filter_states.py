@@ -1,36 +1,17 @@
 #!/usr/bin/python3
 """
-states module
+Same requirememts as 2-my_filer_states.py but is safe from MySQL injections!
 """
 
+if __name__ == '__main__':
+    import MySQLdb
+    import sys
 
-import MySQLdb
-import sys
-
-
-def myfilter_states():
-    """"
-    lists all states with a name starting with N (upper N)
-    from the database hbtn_0e_0_usa
-    """
-    user = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    searchstate = sys.argv[4]
-
-    db = MySQLdb.connect(host="localhost", port=3306, user=user,
-                         passwd=password, db=database)
-
+    argv = (sys.argv)[1:]
+    db = MySQLdb.connect(user=argv[0], passwd=argv[1], db=argv[2])
     cur = db.cursor()
-    cur.execute("SELECT * FROM states\
-                WHERE name='{}'\
-                ORDER BY id ASC".format(searchstate))
+    cur.execute("SELECT * FROM states WHERE name=%s ORDER BY states.id ASC",
+                (argv[3],))
     rows = cur.fetchall()
     for row in rows:
         print(row)
-    cur.close()
-    db.close()
-
-
-if __name__ == "__main__":
-    myfilter_states()
