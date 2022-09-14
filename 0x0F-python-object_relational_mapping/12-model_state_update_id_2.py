@@ -1,26 +1,28 @@
 #!/usr/bin/python3
 """
-Script that changes the name of the state object in the database
+script that changes the name of a State object from the database hbtn_0e_6_usa
+
+    - script should take 3 arguments: mysql username,
+    mysql password and database name
+    - uses the module SQLAlchemy
+    - import State and Base from model_state
+    - script connecta to a MySQL server running on localhost at port 3306
+    - Change the name of the State where id = 2 to New Mexico
 """
 
-from sys import argv
-from model_state import Base, State
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    import sys
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+    from model_state import Base, State
 
-    user = argv[1]
-    password = argv[2]
-    database = argv[3]
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
+    Session = sessionmaker(bind=engine)
+    s = Session()
 
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format
-                           (user, password, database), pool_pre_ping=True)
-    Base.metadata.create_all(engine)
-
-    session = Session(engine)
-    new_state = session.query(State).filter_by(id=2).first()
-    new_state.name = 'New Mexico'
-    session.add(new_state)
-    session.commit()
-    session.close()
+#    state = s.merge(State(id=7))
+    state = s.query(State).filter(State.id == 2).one()
+    state.name = "New Mexico"
+    s.commit()
