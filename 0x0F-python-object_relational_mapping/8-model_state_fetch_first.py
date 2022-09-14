@@ -1,29 +1,30 @@
 #!/usr/bin/python3
 """
-Script prints the first State object from the database
+script that prints the first State object from the database hbtn_0e_6_usa
+
+    - script take 3 arguments: mysql username, mysql password and database name
+    - uses the module SQLAlchemy
+    - import State and Base from model_state
+    - script connects to a MySQL server running on localhost at port 3306
+    - The state you display must be the first in states.id
+    - You are not allowed to fetch all states from the database
+    before displaying the result
+    - If the table states is empty, print 'Nothing' followed by a new line
 """
 
-from sys import argv
-from model_state import Base, State
-from sqlalchemy.orm import Session
-from sqlalchemy import (create_engine)
+if __name__ == '__main__':
+    import sys
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+    from model_state import Base, State
 
-if __name__ == "__main__":
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
+    Session = sessionmaker(bind=engine)
+    s = Session()
 
-    user = argv[1]
-    password = argv[2]
-    database = argv[3]
-
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format
-                           (user, password, database), pool_pre_ping=True)
-    Base.metadata.create_all(engine)
-
-    session = Session(engine)
-    state = session.query(State).first()
-
-    if state is not None:
-        print("{}: {}".format(state.id, state.name))
-    else:
+    if not s.query(State).first():
         print("Nothing")
-
-    session.close()
+    else:
+        row = (s.query(State).first())
+        print('{}: {}'.format(row.id, row.name))
